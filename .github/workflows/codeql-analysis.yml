@@ -19,7 +19,8 @@ jobs:
       
     strategy:
       fail-fast: false
-      matrix: ['csharp']
+      matrix: 
+        language: ['csharp']
       
     steps:
       - uses: actions/checkout@v3
