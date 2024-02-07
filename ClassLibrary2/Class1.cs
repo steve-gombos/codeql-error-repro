@@ -30,7 +30,6 @@ public class Class1<T> : XmlSerializerInputFormatter
         var errors = new List<string>();
         var schemas = SchemaAccess.GetSchemaSet<T>();
         var settings = new XmlReaderSettings();
-        settings.DtdProcessing = DtdProcessing.Prohibit;
         settings.ValidationType = ValidationType.Schema;
         settings.Schemas.Add(schemas);
         settings.ValidationEventHandler += (sender, args) =>
