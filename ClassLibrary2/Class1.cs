@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Xml;
+using System.Xml.Schema;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
@@ -20,6 +21,9 @@ public class Class1 : XmlSerializerInputFormatter
         {
             var request = context.HttpContext.Request;
             var settings = new XmlReaderSettings();
+            settings.ValidationType = ValidationType.Schema;
+            settings.Schemas.Add(new XmlSchemaSet());
+            settings.ValidationEventHandler += (sender, args) => { };
             using var xmlReader = XmlReader.Create(request.Body, settings);
             var type = GetSerializableType(context.ModelType);
             var serializer = GetCachedSerializer(type);
